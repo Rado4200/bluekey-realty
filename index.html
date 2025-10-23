@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueKey Realty - Tu hogar perfecto en Barcelona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-light: #3EB8FF;
+            --blue-dark: #1F6FB2;
+            --blue-pale: #A6E4FF;
+            --blue-accent: #2196F3;
+            --card-bg: #D8DADD;
+            --card-bg-light: #E0E2E5;
+            --input-bg: #CBCDD0;
+            --grey-1: #D8DADD;
+            --grey-2: #CBCDD0;
+            --grey-3: #BFC1C4;
+            --grey-4: #B3B5B8;
+            --grey-5: #A7A9AC;
+            --grey-6: #9B9D9F;
+            --grey-7: #8F9193;
+            --grey-border: #A1A3A6;
+            --charcoal: #2C3E50;
+            --charcoal-light: #34495E;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--charcoal);
+            background: var(--grey-1);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, transparent 30%, rgba(62, 184, 255, 0.04) 30%, rgba(62, 184, 255, 0.04) 40%, transparent 40%),
+                linear-gradient(45deg, transparent 60%, rgba(31, 111, 178, 0.03) 60%, rgba(31, 111, 178, 0.03) 70%, transparent 70%),
+                radial-gradient(ellipse at 20% 20%, rgba(62, 184, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(166, 228, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flowing-line {
+            position: fixed;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(62, 184, 255, 0.25), transparent);
+            animation: flowLine 30s infinite linear;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flowing-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .flowing-line:nth-child(2) { top: 50%; animation-delay: -15s; }
+        .flowing-line:nth-child(3) { top: 80%; animation-delay: -25s; }
+
+        @keyframes flowLine {
+            0% { transform: translateX(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(216, 218, 221, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            border-bottom: 1px solid var(--grey-border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-light), var(--blue-dark));
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-center a:hover {
+            color: var(--blue-dark);
+        }
+
+        .nav-center a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.4rem;
+            background: var(--grey-3);
+            padding: 0.3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 0.9rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+            color: #E8E9EA;
+            box-shadow: 0 4px 12px rgba(62, 184, 255, 0.3);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--grey-1);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--blue-dark);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Hero - Starting grey tone */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #D8DADD 0%, #CBCDD0 100%);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(62, 184, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(166, 228, 255, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -30px); }
+            50% { transform: translate(-20px, 20px); }
+            75% { transform: translate(40px, 10px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--charcoal-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+            color: #E8E9EA;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 12px 35px rgba(62, 184, 255, 0.35);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 50px rgba(62, 184, 255, 0.45);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections - Progressive darkening backgrounds */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--blue-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue-light), var(--blue-dark));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--charcoal-light);
+            margin-bottom: 4rem;
+            font-size: 1.15rem;
+        }
+
+        /* Listings Section - Darkening background */
+        #listings {
+            background: linear-gradient(180deg, #CBCDD0 0%, #BFC1C4 100%);
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Property Cards - Consistent bright color */
+        .property-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            border: 1px solid var(--grey-border);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .property-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(62, 184, 255, 0.35);
+        }
+
+        .property-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .property-image {
+            transform: scale(1.08);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+            color: #E8E9EA;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .property-content {
+            padding: 2rem;
+        }
+
+        .property-price {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--charcoal);
+        }
+
+        .property-desc {
+            color: var(--charcoal-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding-top: 1rem;
+            border-top: 2px solid var(--grey-3);
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        /* About Section - Darker background */
+        #about {
+            background: linear-gradient(180deg, #BFC1C4 0%, #B3B5B8 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        /* Agent Cards - Same consistent bright color */
+        .agent-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+            transition: all 0.4s;
+            border: 1px solid var(--grey-border);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .agent-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .agent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(62, 184, 255, 0.35);
+        }
+
+        .agent-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .agent-info {
+            padding: 2rem;
+        }
+
+        .agent-name {
+            font-size: 1.8rem;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-title {
+            color: var(--charcoal-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-desc {
+            color: var(--charcoal-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .credential-badge {
+            background: var(--card-bg-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blue-dark);
+            border: 2px solid var(--grey-border);
+            transition: all 0.3s;
+        }
+
+        .credential-badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--blue-pale);
+            box-shadow: 0 4px 12px rgba(62, 184, 255, 0.2);
+        }
+
+        /* Services Section - Even darker background */
+        #services {
+            background: linear-gradient(180deg, #B3B5B8 0%, #A7A9AC 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Service Cards - Same consistent bright color */
+        .service-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s;
+            text-align: center;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            border-color: var(--blue-pale);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(62, 184, 255, 0.35);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.8rem;
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--blue-dark);
+        }
+
+        .service-card p {
+            color: var(--charcoal-light);
+            line-height: 1.8;
+        }
+
+        /* Testimonials Section - Darker still */
+        #testimonials {
+            background: linear-gradient(180deg, #A7A9AC 0%, #9B9D9F 100%);
+        }
+
+        .testimonials-slider {
+            max-width: 900px;
+            margin: 3rem auto;
+            position: relative;
+            min-height: 350px;
+        }
+
+        /* Testimonial Cards - Same consistent bright color */
+        .testimonial {
+            background: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 18px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+            border: 2px solid var(--grey-border);
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--blue-dark);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            color: var(--charcoal-light);
+            font-size: 1rem;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2.5rem;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--grey-border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot:hover {
+            background: var(--blue-light);
+            transform: scale(1.15);
+        }
+
+        .dot.active {
+            background: var(--blue-dark);
+            width: 40px;
+            border-radius: 7px;
+        }
+
+        /* Contact Section - Darkest grey before footer */
+        #contact {
+            background: linear-gradient(180deg, #9B9D9F 0%, #8F9193 100%);
+        }
+
+        /* Contact Wrapper - Same consistent bright color */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--card-bg);
+            padding: 3.5rem;
+            border-radius: 18px;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--grey-border);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--charcoal);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1.1rem 1.3rem;
+            border: 2px solid var(--grey-border);
+            border-radius: 10px;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: var(--input-bg);
+            color: var(--charcoal);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue-light);
+            background: var(--card-bg-light);
+            box-shadow: 0 0 0 3px rgba(62, 184, 255, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-dark));
+            color: #E8E9EA;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 8px 25px rgba(62, 184, 255, 0.35);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(62, 184, 255, 0.45);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--card-bg-light);
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .info-item:hover {
+            background: var(--card-bg);
+            border-color: var(--blue-pale);
+            box-shadow: 0 4px 12px rgba(62, 184, 255, 0.2);
+        }
+
+        .info-icon {
+            width: 35px;
+            height: 35px;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-text p {
+            color: var(--charcoal-light);
+            line-height: 1.6;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--grey-border);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a5a8e, #1F6FB2, #2196F3);
+            color: #E8E9EA;
+            padding: 4rem 0 1.5rem;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: rgba(232, 233, 234, 0.85);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: #E8E9EA;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(232, 233, 234, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: #E8E9EA;
+            transform: translateY(-5px);
+        }
+
+        .social-icon:hover svg {
+            fill: var(--blue-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(232, 233, 234, 0.2);
+            opacity: 0.85;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-center {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--grey-1);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                display: none;
+            }
+
+            .nav-center.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .listings-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flowing-line"></div>
+    <div class="flowing-line"></div>
+    <div class="flowing-line"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 20 L75 40 L75 80 L25 80 L25 40 Z" fill="url(#blueGrad)" stroke="#1F6FB2" stroke-width="3"/>
+                    <circle cx="50" cy="60" r="8" fill="#1F6FB2"/>
+                    <rect x="45" y="63" width="10" height="17" fill="#1F6FB2"/>
+                    <defs>
+                        <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3EB8FF;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1F6FB2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>BlueKey Realty</span>
+            </div>
+            <ul class="nav-center">
+                <li><a href="#home" data-nav="home">Inicio</a></li>
+                <li><a href="#listings" data-nav="listings">Propiedades</a></li>
+                <li><a href="#about" data-nav="about">Equipo</a></li>
+                <li><a href="#services" data-nav="services">Servicios</a></li>
+                <li><a href="#testimonials" data-nav="testimonials">Testimonios</a></li>
+                <li><a href="#contact" data-nav="contact">Contacto</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn active" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="ca">CA</button>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-i18n="heroTitle">Encuentra tu hogar ideal en Barcelona</h1>
+                <p data-i18n="heroSubtitle">Servicios inmobiliarios premium con experiencia local</p>
+                <a href="#listings" class="cta-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L3 9V22H10V16H14V22H21V9L12 2Z" fill="currentColor"/>
+                    </svg>
+                    <span data-i18n="heroBtn">Ver Propiedades</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="listings">
+        <div class="container">
+            <h2 class="section-title" data-i18n="listingsTitle">Propiedades Destacadas</h2>
+            <p class="section-subtitle" data-i18n="listingsSubtitle">Descubre nuestra selección exclusiva en Barcelona</p>
+            <div class="listings-grid">
+                <div class="property-card">
+                    <div class="property-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop" alt="Villa" class="property-image">
+                        <span class="property-badge" data-i18n="badge1">Destacada</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">€1,250,000</div>
+                        <h3 class="property-title" data-i18n="prop1Title">Villa de Lujo Moderna</h3>
+                        <p class="property-desc" data-i18n="prop1Desc">Villa contemporánea con vistas panorámicas y acabados premium</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="14" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="3" y="14" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="14" y="14" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span data-i18n="beds4">4 Dormitorios</span>
+                            </div>
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="9" stroke="#3EB8FF" stroke-width="2"/>
+                                    <path d="M12 6v6l4 2" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span>350 m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop" alt="Ático" class="property-image">
+                        <span class="property-badge" data-i18n="badge2">Premium</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">€890,000</div>
+                        <h3 class="property-title" data-i18n="prop2Title">Ático en el Centro</h3>
+                        <p class="property-desc" data-i18n="prop2Desc">Elegante ático en el corazón de Barcelona con amenidades de lujo</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="14" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="3" y="14" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span data-i18n="beds3">3 Dormitorios</span>
+                            </div>
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="9" stroke="#3EB8FF" stroke-width="2"/>
+                                    <path d="M12 6v6l4 2" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span>220 m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop" alt="Casa" class="property-image">
+                        <span class="property-badge" data-i18n="badge3">Nueva</span>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">€675,000</div>
+                        <h3 class="property-title" data-i18n="prop3Title">Casa Familiar Espaciosa</h3>
+                        <p class="property-desc" data-i18n="prop3Desc">Casa familiar con jardín en zona residencial tranquila</p>
+                        <div class="property-features">
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="14" y="3" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="3" y="14" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="14" y="14" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                    <rect x="8.5" y="8.5" width="7" height="7" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span data-i18n="beds5">5 Dormitorios</span>
+                            </div>
+                            <div class="feature">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="9" stroke="#3EB8FF" stroke-width="2"/>
+                                    <path d="M12 6v6l4 2" stroke="#3EB8FF" stroke-width="2"/>
+                                </svg>
+                                <span>280 m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="aboutTitle">Nuestro Equipo Experto</h2>
+            <p class="section-subtitle" data-i18n="aboutSubtitle">Profesionales dedicados con experiencia local en Barcelona</p>
+            <div class="about-grid">
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop&crop=faces,top" alt="Sarah Mitchell" class="agent-image">
+                    <div class="agent-info">
+                        <h3 class="agent-name">Sarah Mitchell</h3>
+                        <p class="agent-title" data-i18n="agent1Title">Directora y Agente Principal</p>
+                        <p class="agent-desc" data-i18n="agent1Desc">Con 15+ años de experiencia en el mercado de lujo de Barcelona, especializada en propiedades premium.</p>
+                        <div class="credentials">
+                            <span class="credential-badge" data-i18n="cred1">Licenciada</span>
+                            <span class="credential-badge" data-i18n="cred2">MBA</span>
+                            <span class="credential-badge" data-i18n="cred3">15+ Años</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&fit=crop&crop=faces,top" alt="David Torres" class="agent-image">
+                    <div class="agent-info">
+                        <h3 class="agent-name">David Torres</h3>
+                        <p class="agent-title" data-i18n="agent2Title">Agente Senior de Ventas</p>
+                        <p class="agent-desc" data-i18n="agent2Desc">Experto en inversiones inmobiliarias con profundo conocimiento del mercado catalán y español.</p>
+                        <div class="credentials">
+                            <span class="credential-badge" data-i18n="cred4">Licenciado</span>
+                            <span class="credential-badge" data-i18n="cred5">Especialista</span>
+                            <span class="credential-badge" data-i18n="cred6">10+ Años</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title" data-i18n="servicesTitle">Nuestros Servicios</h2>
+            <p class="section-subtitle" data-i18n="servicesSubtitle">Soluciones integrales para todas tus necesidades inmobiliarias</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L80 35 L80 90 L20 90 L20 35 Z" fill="url(#sGrad1)" opacity="0.2"/>
+                        <path d="M50 10 L80 35 L80 90 L20 90 L20 35 Z" stroke="url(#sGrad1)" stroke-width="4"/>
+                        <circle cx="50" cy="60" r="12" fill="#3EB8FF"/>
+                        <defs>
+                            <linearGradient id="sGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3EB8FF"/>
+                                <stop offset="100%" style="stop-color:#1F6FB2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h3 data-i18n="serv1Title">Compra de Propiedades</h3>
+                    <p data-i18n="serv1Desc">Orientación experta en todo el proceso de compra, desde la búsqueda hasta el cierre.</p>
+                </div>
+
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="60" height="60" rx="10" fill="url(#sGrad2)" opacity="0.2"/>
+                        <rect x="20" y="20" width="60" height="60" rx="10" stroke="url(#sGrad2)" stroke-width="4"/>
+                        <path d="M35 50 L45 60 L65 40" stroke="#3EB8FF" stroke-width="5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="sGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3EB8FF"/>
+                                <stop offset="100%" style="stop-color:#1F6FB2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h3 data-i18n="serv2Title">Venta de Propiedades</h3>
+                    <p data-i18n="serv2Desc">Marketing estratégico para vender tu propiedad rápidamente al mejor precio.</p>
+                </div>
+
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="35" r="20" fill="url(#sGrad3)" opacity="0.2"/>
+                        <circle cx="50" cy="35" r="20" stroke="url(#sGrad3)" stroke-width="4"/>
+                        <rect x="25" y="55" width="50" height="35" rx="5" fill="url(#sGrad3)" opacity="0.2"/>
+                        <rect x="25" y="55" width="50" height="35" rx="5" stroke="url(#sGrad3)" stroke-width="4"/>
+                        <defs>
+                            <linearGradient id="sGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3EB8FF"/>
+                                <stop offset="100%" style="stop-color:#1F6FB2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h3 data-i18n="serv3Title">Gestión de Alquileres</h3>
+                    <p data-i18n="serv3Desc">Gestión completa de propiedades en alquiler con servicio integral.</p>
+                </div>
+
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="35" fill="url(#sGrad4)" opacity="0.2"/>
+                        <circle cx="50" cy="50" r="35" stroke="url(#sGrad4)" stroke-width="4"/>
+                        <path d="M50 25 L50 50 L70 60" stroke="#3EB8FF" stroke-width="5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="sGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3EB8FF"/>
+                                <stop offset="100%" style="stop-color:#1F6FB2"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h3 data-i18n="serv4Title">Consultoría</h3>
+                    <p data-i18n="serv4Desc">Consultoría profesional y análisis de mercado para inversiones informadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-i18n="testimonialsTitle">Testimonios de Clientes</h2>
+            <p class="section-subtitle" data-i18n="testimonialsSubtitle">Lo que nuestros clientes dicen sobre nosotros</p>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text" data-i18n="test1Text">El equipo de BlueKey hizo que nuestra compra fuera increíblemente fluida. Su conocimiento del mercado de Barcelona fue excepcional. ¡Encontramos nuestra casa soñada en semanas!</p>
+                    <div class="testimonial-author">Michael & Jennifer Thompson</div>
+                    <div class="testimonial-role" data-i18n="test1Role">Compradores Primerizos</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text" data-i18n="test2Text">Profesionales, receptivos y dedicados. Nos ayudaron a vender por encima del precio de oferta en menos de dos semanas. ¡Altamente recomendados!</p>
+                    <div class="testimonial-author">David Martínez</div>
+                    <div class="testimonial-role" data-i18n="test2Role">Vendedor de Propiedad</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text" data-i18n="test3Text">Como inversionista, valoro la experiencia y eficiencia. BlueKey ha ofrecido consistentemente servicio excepcional y conocimientos valiosos del mercado barcelonés.</p>
+                    <div class="testimonial-author">Elizabeth Chen</div>
+                    <div class="testimonial-role" data-i18n="test3Role">Inversionista Inmobiliaria</div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contactTitle">Ponte en Contacto</h2>
+            <p class="section-subtitle" data-i18n="contactSubtitle">¿Listo para encontrar tu propiedad ideal? Contáctanos hoy</p>
+            <div class="contact-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-i18n="formNameLabel">Tu Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="formEmailLabel">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="formPhoneLabel">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="formMessageLabel">Mensaje</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-i18n="formSubmitBtn">Enviar Mensaje</button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="#3EB8FF" stroke-width="2"/>
+                        </svg>
+                        <div class="info-text">
+                            <h4 data-i18n="contactPhoneLabel">Teléfono</h4>
+                            <p>+34 932 123 456</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#3EB8FF" stroke-width="2"/>
+                            <path d="M3 7L12 13L21 7" stroke="#3EB8FF" stroke-width="2"/>
+                        </svg>
+                        <div class="info-text">
+                            <h4>Email</h4>
+                            <p>info@bluekeyrealty.es</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13401 2 5 5.13401 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13401 15.866 2 12 2Z" stroke="#3EB8FF" stroke-width="2"/>
+                            <circle cx="12" cy="9" r="2.5" stroke="#3EB8FF" stroke-width="2"/>
+                        </svg>
+                        <div class="info-text">
+                            <h4 data-i18n="contactAddressLabel">Oficina</h4>
+                            <p>Passeig de Gràcia 123<br>08008 Barcelona, España</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.2659094948445!2d2.1639725156742797!3d41.39119817926444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2f5d6d2f43b%3A0xe54df5b46c4f0f92!2sPasseig%20de%20Gr%C3%A0cia%2C%20Barcelona%2C%20Spain!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BlueKey Realty</h3>
+                    <p data-i18n="footerAbout">Tu socio de confianza para encontrar la propiedad perfecta en Barcelona. Excelencia, integridad y servicio personalizado.</p>
+                    <div class="social-links">
+                        <div class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </div>
+                        <div class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                            </svg>
+                        </div>
+                        <div class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footerLinksTitle">Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#home" data-i18n="navHome">Inicio</a></li>
+                        <li><a href="#listings" data-i18n="navListings">Propiedades</a></li>
+                        <li><a href="#about" data-i18n="navAbout">Equipo</a></li>
+                        <li><a href="#services" data-i18n="navServices">Servicios</a></li>
+                        <li><a href="#contact" data-i18n="navContact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footerServicesTitle">Servicios</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footerServ1">Compra de Propiedades</a></li>
+                        <li><a href="#" data-i18n="footerServ2">Venta de Propiedades</a></li>
+                        <li><a href="#" data-i18n="footerServ3">Gestión de Alquileres</a></li>
+                        <li><a href="#" data-i18n="footerServ4">Consultoría</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footerContactTitle">Contacto</h3>
+                    <ul>
+                        <li>+34 932 123 456</li>
+                        <li>info@bluekeyrealty.es</li>
+                        <li>Passeig de Gràcia 123</li>
+                        <li>08008 Barcelona, España</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> BlueKey Realty. <span data-i18n="footerCopyright">Todos los derechos reservados.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                navHome: "Home", navListings: "Properties", navAbout: "Team", navServices: "Services", navTestimonials: "Testimonials", navContact: "Contact",
+                heroTitle: "Find Your Ideal Home in Barcelona", heroSubtitle: "Premium real estate services with local expertise", heroBtn: "View Properties",
+                listingsTitle: "Featured Properties", listingsSubtitle: "Discover our exclusive selection in Barcelona",
+                badge1: "Featured", badge2: "Premium", badge3: "New",
+                prop1Title: "Modern Luxury Villa", prop1Desc: "Contemporary villa with panoramic views and premium finishes",
+                prop2Title: "Downtown Penthouse", prop2Desc: "Elegant penthouse in the heart of Barcelona with luxury amenities",
+                prop3Title: "Spacious Family Home", prop3Desc: "Family home with garden in quiet residential area",
+                beds3: "3 Bedrooms", beds4: "4 Bedrooms", beds5: "5 Bedrooms",
+                aboutTitle: "Our Expert Team", aboutSubtitle: "Dedicated professionals with local Barcelona expertise",
+                agent1Title: "Director & Lead Agent", agent1Desc: "With 15+ years of experience in Barcelona's luxury market, specializing in premium properties.",
+                agent2Title: "Senior Sales Agent", agent2Desc: "Expert in real estate investments with deep knowledge of the Catalan and Spanish market.",
+                cred1: "Licensed", cred2: "MBA", cred3: "15+ Years", cred4: "Licensed", cred5: "Specialist", cred6: "10+ Years",
+                servicesTitle: "Our Services", servicesSubtitle: "Comprehensive solutions for all your real estate needs",
+                serv1Title: "Property Buying", serv1Desc: "Expert guidance throughout the buying process, from search to closing.",
+                serv2Title: "Property Selling", serv2Desc: "Strategic marketing to sell your property quickly at the best price.",
+                serv3Title: "Rental Management", serv3Desc: "Complete management of rental properties with full service.",
+                serv4Title: "Consultation", serv4Desc: "Professional consultation and market analysis for informed investments.",
+                testimonialsTitle: "Client Testimonials", testimonialsSubtitle: "What our clients say about us",
+                test1Text: "BlueKey's team made our purchase incredibly smooth. Their knowledge of Barcelona's market was exceptional. We found our dream home in weeks!",
+                test1Role: "First-Time Buyers",
+                test2Text: "Professional, responsive, and dedicated. They helped us sell above asking price in less than two weeks. Highly recommended!",
+                test2Role: "Property Seller",
+                test3Text: "As an investor, I value expertise and efficiency. BlueKey has consistently delivered exceptional service and valuable Barcelona market insights.",
+                test3Role: "Real Estate Investor",
+                contactTitle: "Get In Touch", contactSubtitle: "Ready to find your ideal property? Contact us today",
+                formNameLabel: "Your Name", formEmailLabel: "Email Address", formPhoneLabel: "Phone", formMessageLabel: "Message", formSubmitBtn: "Send Message",
+                contactPhoneLabel: "Phone", contactAddressLabel: "Office",
+                footerAbout: "Your trusted partner for finding the perfect property in Barcelona. Excellence, integrity, and personalized service.",
+                footerLinksTitle: "Quick Links", footerServicesTitle: "Services", footerContactTitle: "Contact",
+                footerServ1: "Property Buying", footerServ2: "Property Selling", footerServ3: "Rental Management", footerServ4: "Consultation",
+                footerCopyright: "All rights reserved."
+            },
+            de: {
+                navHome: "Startseite", navListings: "Immobilien", navAbout: "Team", navServices: "Dienstleistungen", navTestimonials: "Referenzen", navContact: "Kontakt",
+                heroTitle: "Finden Sie Ihr ideales Zuhause in Barcelona", heroSubtitle: "Premium-Immobilienservices mit lokaler Expertise", heroBtn: "Immobilien ansehen",
+                listingsTitle: "Ausgewählte Immobilien", listingsSubtitle: "Entdecken Sie unsere exklusive Auswahl in Barcelona",
+                badge1: "Empfohlen", badge2: "Premium", badge3: "Neu",
+                prop1Title: "Moderne Luxusvilla", prop1Desc: "Zeitgenössische Villa mit Panoramablick und Premium-Ausstattung",
+                prop2Title: "Penthouse im Zentrum", prop2Desc: "Elegantes Penthouse im Herzen Barcelonas mit Luxus-Annehmlichkeiten",
+                prop3Title: "Geräumiges Familienhaus", prop3Desc: "Familienhaus mit Garten in ruhiger Wohngegend",
+                beds3: "3 Schlafzimmer", beds4: "4 Schlafzimmer", beds5: "5 Schlafzimmer",
+                aboutTitle: "Unser Expertenteam", aboutSubtitle: "Engagierte Fachleute mit Barcelona-Expertise",
+                agent1Title: "Direktorin & Hauptagentin", agent1Desc: "Mit 15+ Jahren Erfahrung im Luxusmarkt Barcelonas, spezialisiert auf Premium-Immobilien.",
+                agent2Title: "Senior-Verkaufsagent", agent2Desc: "Experte für Immobilieninvestitionen mit tiefem Wissen über den katalanischen und spanischen Markt.",
+                cred1: "Lizenziert", cred2: "MBA", cred3: "15+ Jahre", cred4: "Lizenziert", cred5: "Spezialist", cred6: "10+ Jahre",
+                servicesTitle: "Unsere Dienstleistungen", servicesSubtitle: "Umfassende Lösungen für alle Ihre Immobilienbedürfnisse",
+                serv1Title: "Immobilienkauf", serv1Desc: "Expertenberatung während des gesamten Kaufprozesses.",
+                serv2Title: "Immobilienverkauf", serv2Desc: "Strategisches Marketing für schnellen Verkauf zum besten Preis.",
+                serv3Title: "Mietverwaltung", serv3Desc: "Vollständige Verwaltung von Mietobjekten mit Komplettservice.",
+                serv4Title: "Beratung", serv4Desc: "Professionelle Beratung und Marktanalyse für fundierte Investitionen.",
+                testimonialsTitle: "Kundenstimmen", testimonialsSubtitle: "Was unsere Kunden über uns sagen",
+                test1Text: "Das Team von BlueKey machte unseren Kauf unglaublich reibungslos. Ihr Wissen über Barcelonas Markt war außergewöhnlich. Wir fanden unser Traumhaus in Wochen!",
+                test1Role: "Erstkäufer",
+                test2Text: "Professionell, reaktionsschnell und engagiert. Sie halfen uns, über dem Angebotspreis in weniger als zwei Wochen zu verkaufen. Sehr empfehlenswert!",
+                test2Role: "Immobilienverkäufer",
+                test3Text: "Als Investor schätze ich Expertise und Effizienz. BlueKey hat durchweg außergewöhnlichen Service und wertvolle Barcelona-Markteinblicke geliefert.",
+                test3Role: "Immobilieninvestor",
+                contactTitle: "Kontaktieren Sie uns", contactSubtitle: "Bereit, Ihre ideale Immobilie zu finden? Kontaktieren Sie uns heute",
+                formNameLabel: "Ihr Name", formEmailLabel: "E-Mail-Adresse", formPhoneLabel: "Telefon", formMessageLabel: "Nachricht", formSubmitBtn: "Nachricht senden",
+                contactPhoneLabel: "Telefon", contactAddressLabel: "Büro",
+                footerAbout: "Ihr vertrauenswürdiger Partner für die perfekte Immobilie in Barcelona. Exzellenz, Integrität und persönlicher Service.",
+                footerLinksTitle: "Schnelllinks", footerServicesTitle: "Dienstleistungen", footerContactTitle: "Kontakt",
+                footerServ1: "Immobilienkauf", footerServ2: "Immobilienverkauf", footerServ3: "Mietverwaltung", footerServ4: "Beratung",
+                footerCopyright: "Alle Rechte vorbehalten."
+            },
+            es: {
+                navHome: "Inicio", navListings: "Propiedades", navAbout: "Equipo", navServices: "Servicios", navTestimonials: "Testimonios", navContact: "Contacto",
+                heroTitle: "Encuentra tu hogar ideal en Barcelona", heroSubtitle: "Servicios inmobiliarios premium con experiencia local", heroBtn: "Ver Propiedades",
+                listingsTitle: "Propiedades Destacadas", listingsSubtitle: "Descubre nuestra selección exclusiva en Barcelona",
+                badge1: "Destacada", badge2: "Premium", badge3: "Nueva",
+                prop1Title: "Villa de Lujo Moderna", prop1Desc: "Villa contemporánea con vistas panorámicas y acabados premium",
+                prop2Title: "Ático en el Centro", prop2Desc: "Elegante ático en el corazón de Barcelona con amenidades de lujo",
+                prop3Title: "Casa Familiar Espaciosa", prop3Desc: "Casa familiar con jardín en zona residencial tranquila",
+                beds3: "3 Dormitorios", beds4: "4 Dormitorios", beds5: "5 Dormitorios",
+                aboutTitle: "Nuestro Equipo Experto", aboutSubtitle: "Profesionales dedicados con experiencia local en Barcelona",
+                agent1Title: "Directora y Agente Principal", agent1Desc: "Con 15+ años de experiencia en el mercado de lujo de Barcelona, especializada en propiedades premium.",
+                agent2Title: "Agente Senior de Ventas", agent2Desc: "Experto en inversiones inmobiliarias con profundo conocimiento del mercado catalán y español.",
+                cred1: "Licenciada", cred2: "MBA", cred3: "15+ Años", cred4: "Licenciado", cred5: "Especialista", cred6: "10+ Años",
+                servicesTitle: "Nuestros Servicios", servicesSubtitle: "Soluciones integrales para todas tus necesidades inmobiliarias",
+                serv1Title: "Compra de Propiedades", serv1Desc: "Orientación experta en todo el proceso de compra, desde la búsqueda hasta el cierre.",
+                serv2Title: "Venta de Propiedades", serv2Desc: "Marketing estratégico para vender tu propiedad rápidamente al mejor precio.",
+                serv3Title: "Gestión de Alquileres", serv3Desc: "Gestión completa de propiedades en alquiler con servicio integral.",
+                serv4Title: "Consultoría", serv4Desc: "Consultoría profesional y análisis de mercado para inversiones informadas.",
+                testimonialsTitle: "Testimonios de Clientes", testimonialsSubtitle: "Lo que nuestros clientes dicen sobre nosotros",
+                test1Text: "El equipo de BlueKey hizo que nuestra compra fuera increíblemente fluida. Su conocimiento del mercado de Barcelona fue excepcional. ¡Encontramos nuestra casa soñada en semanas!",
+                test1Role: "Compradores Primerizos",
+                test2Text: "Profesionales, receptivos y dedicados. Nos ayudaron a vender por encima del precio de oferta en menos de dos semanas. ¡Altamente recomendados!",
+                test2Role: "Vendedor de Propiedad",
+                test3Text: "Como inversionista, valoro la experiencia y eficiencia. BlueKey ha ofrecido consistentemente servicio excepcional y conocimientos valiosos del mercado barcelonés.",
+                test3Role: "Inversionista Inmobiliaria",
+                contactTitle: "Ponte en Contacto", contactSubtitle: "¿Listo para encontrar tu propiedad ideal? Contáctanos hoy",
+                formNameLabel: "Tu Nombre", formEmailLabel: "Correo Electrónico", formPhoneLabel: "Teléfono", formMessageLabel: "Mensaje", formSubmitBtn: "Enviar Mensaje",
+                contactPhoneLabel: "Teléfono", contactAddressLabel: "Oficina",
+                footerAbout: "Tu socio de confianza para encontrar la propiedad perfecta en Barcelona. Excelencia, integridad y servicio personalizado.",
+                footerLinksTitle: "Enlaces Rápidos", footerServicesTitle: "Servicios", footerContactTitle: "Contacto",
+                footerServ1: "Compra de Propiedades", footerServ2: "Venta de Propiedades", footerServ3: "Gestión de Alquileres", footerServ4: "Consultoría",
+                footerCopyright: "Todos los derechos reservados."
+            },
+            ca: {
+                navHome: "Inici", navListings: "Propietats", navAbout: "Equip", navServices: "Serveis", navTestimonials: "Testimonis", navContact: "Contacte",
+                heroTitle: "Troba la teva llar ideal a Barcelona", heroSubtitle: "Serveis immobiliaris premium amb experiència local", heroBtn: "Veure Propietats",
+                listingsTitle: "Propietats Destacades", listingsSubtitle: "Descobreix la nostra selecció exclusiva a Barcelona",
+                badge1: "Destacada", badge2: "Premium", badge3: "Nova",
+                prop1Title: "Villa de Luxe Moderna", prop1Desc: "Villa contemporània amb vistes panoràmiques i acabats premium",
+                prop2Title: "Àtic al Centre", prop2Desc: "Elegant àtic al cor de Barcelona amb comoditats de luxe",
+                prop3Title: "Casa Familiar Espaiosa", prop3Desc: "Casa familiar amb jardí en zona residencial tranquil·la",
+                beds3: "3 Dormitoris", beds4: "4 Dormitoris", beds5: "5 Dormitoris",
+                aboutTitle: "El Nostre Equip Expert", aboutSubtitle: "Professionals dedicats amb experiència local a Barcelona",
+                agent1Title: "Directora i Agent Principal", agent1Desc: "Amb 15+ anys d'experiència al mercat de luxe de Barcelona, especialitzada en propietats premium.",
+                agent2Title: "Agent Senior de Vendes", agent2Desc: "Expert en inversions immobiliàries amb profund coneixement del mercat català i espanyol.",
+                cred1: "Llicenciada", cred2: "MBA", cred3: "15+ Anys", cred4: "Llicenciat", cred5: "Especialista", cred6: "10+ Anys",
+                servicesTitle: "Els Nostres Serveis", servicesSubtitle: "Solucions integrals per a totes les teves necessitats immobiliàries",
+                serv1Title: "Compra de Propietats", serv1Desc: "Orientació experta en tot el procés de compra, des de la cerca fins al tancament.",
+                serv2Title: "Venda de Propietats", serv2Desc: "Màrqueting estratègic per vendre la teva propietat ràpidament al millor preu.",
+                serv3Title: "Gestió de Lloguers", serv3Desc: "Gestió completa de propietats en lloguer amb servei integral.",
+                serv4Title: "Consultoria", serv4Desc: "Consultoria professional i anàlisi de mercat per a inversions informades.",
+                testimonialsTitle: "Testimonis de Clients", testimonialsSubtitle: "El que els nostres clients diuen sobre nosaltres",
+                test1Text: "L'equip de BlueKey va fer que la nostra compra fos increïblement fluida. El seu coneixement del mercat de Barcelona va ser excepcional. Vam trobar la nostra casa somniada en setmanes!",
+                test1Role: "Compradors per Primera Vegada",
+                test2Text: "Professionals, receptius i dedicats. Ens van ajudar a vendre per sobre del preu d'oferta en menys de dues setmanes. Molt recomanats!",
+                test2Role: "Venedor de Propietat",
+                test3Text: "Com a inversor, valoro l'experiència i l'eficiència. BlueKey ha ofert consistentment servei excepcional i coneixements valuosos del mercat barceloní.",
+                test3Role: "Inversora Immobiliària",
+                contactTitle: "Posa't en Contacte", contactSubtitle: "Preparat per trobar la teva propietat ideal? Contacta'ns avui",
+                formNameLabel: "El Teu Nom", formEmailLabel: "Correu Electrònic", formPhoneLabel: "Telèfon", formMessageLabel: "Missatge", formSubmitBtn: "Enviar Missatge",
+                contactPhoneLabel: "Telèfon", contactAddressLabel: "Oficina",
+                footerAbout: "El teu soci de confiança per trobar la propietat perfecta a Barcelona. Excel·lència, integritat i servei personalitzat.",
+                footerLinksTitle: "Enllaços Ràpids", footerServicesTitle: "Serveis", footerContactTitle: "Contacte",
+                footerServ1: "Compra de Propietats", footerServ2: "Venda de Propietats", footerServ3: "Gestió de Lloguers", footerServ4: "Consultoria",
+                footerCopyright: "Tots els drets reservats."
+            }
+        };
+
+        let currentLang = 'es';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+
+            document.querySelectorAll('[data-nav]').forEach(el => {
+                const key = 'nav' + el.getAttribute('data-nav').charAt(0).toUpperCase() + el.getAttribute('data-nav').slice(1);
+                if (t[key]) el.textContent = t[key];
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchLanguage(btn.getAttribute('data-lang')));
+        });
+
+        let ticking = false;
+        function handleScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const elements = document.querySelectorAll('.property-card, .agent-card, .service-card, .contact-wrapper');
+                    elements.forEach(el => {
+                        if (!el.classList.contains('visible')) {
+                            const rect = el.getBoundingClientRect();
+                            if (rect.top < window.innerHeight - 80) {
+                                el.classList.add('visible');
+                            }
+                        }
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+
+        function showTestimonial(index) {
+            testimonials.forEach((t, i) => {
+                t.classList.toggle('active', i === index);
+            });
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentTestimonial = parseInt(dot.getAttribute('data-index'));
+                showTestimonial(currentTestimonial);
+            });
+        });
+
+        setInterval(nextTestimonial, 6000);
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const messages = {
+                en: 'Thank you! We will contact you soon.',
+                de: 'Vielen Dank! Wir werden uns bald bei Ihnen melden.',
+                es: '¡Gracias! Te contactaremos pronto.',
+                ca: 'Gràcies! Et contactarem aviat.'
+            };
+            alert(messages[currentLang]);
+            e.target.reset();
+        });
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        document.querySelector('.mobile-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-center').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-center a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-center').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
